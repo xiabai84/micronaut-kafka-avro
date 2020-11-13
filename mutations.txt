@@ -1,0 +1,20 @@
+mutation {
+  createPartnerV1(partnerV1: {id:"23", vorname: "bai", nachname: "xia"})
+  {
+    id
+    vorname
+    nachname
+    email
+  }
+}
+
+mutation {
+  createPartnerV2(partnerV2: {id:"23", vorname: "bai", nachname: "xia", age: 36})
+  {
+    id
+    vorname
+    nachname
+    age
+    email
+  }
+}

@@ -1,0 +1,27 @@
+---
+micronaut:
+  application:
+    name: micronaut-kafka-avro
+
+---
+kafka:
+  bootstrap:
+    servers: localhost:9092
+  schema:
+    registry:
+      url: http://localhost:8081
+
+graphql-factory-config:
+  classpath: classpath:schema.graphqls
+  schema:
+    - Mutation
+
+topics:
+  partnerTopic: partner-topic
+
+---
+graphql:
+  enabled: true
+  graphiql:
+    enabled: true
+    path: /graphiql

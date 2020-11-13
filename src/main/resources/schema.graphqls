@@ -1,0 +1,46 @@
+input InputPartnerV1 {
+    id: ID!
+    vorname: String
+    nachname: String
+    email: String
+}
+
+input InputPartnerV2 {
+    id: ID!
+    vorname: String
+    nachname: String
+    age: Int
+    email: String
+}
+
+interface Partner {
+    id: ID!
+}
+
+type PartnerV1 implements Partner {
+    id: ID!
+    vorname: String
+    nachname: String
+    email: String
+}
+
+type PartnerV2 implements Partner {
+    id: ID!
+    vorname: String
+    nachname: String
+    age: Int
+    email: String
+}
+
+type Mutation {
+    createPartnerV1(partnerV1: InputPartnerV1!): PartnerV1!
+    createPartnerV2(partnerV2: InputPartnerV2!): PartnerV2!
+}
+
+type Query {
+}
+
+schema {
+    mutation: Mutation
+    query: Query
+}
