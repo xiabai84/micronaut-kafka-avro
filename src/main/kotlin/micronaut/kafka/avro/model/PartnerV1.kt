@@ -28,7 +28,7 @@ fun PartnerV1.toGenericRecord(): GenericRecord {
     return record
 }
 
-fun GenericRecord.toPartner(): PartnerV1 {
+fun GenericRecord.toPartnerV1(): PartnerV1 {
     return PartnerV1(
         get("id") as String,
         get("vorname") as String,

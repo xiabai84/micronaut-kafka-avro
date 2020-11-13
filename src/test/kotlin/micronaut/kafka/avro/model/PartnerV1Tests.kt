@@ -25,7 +25,7 @@ class PartnerV1Tests {
                 email = "test@test.com"
         ).toGenericRecord()
 
-        val partner = partnerRecord.toPartner()
+        val partner = partnerRecord.toPartnerV1()
         println(partner)
     }
 }

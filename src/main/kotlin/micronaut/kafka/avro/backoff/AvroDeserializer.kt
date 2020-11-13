@@ -1,4 +1,4 @@
-package micronaut.kafka.avro.kafka
+package micronaut.kafka.avro.backoff
 
 import org.apache.avro.generic.GenericRecord
 import org.apache.avro.io.DatumReader

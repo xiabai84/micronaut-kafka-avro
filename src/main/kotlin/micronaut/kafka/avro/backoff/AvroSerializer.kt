@@ -1,10 +1,9 @@
-package micronaut.kafka.avro.kafka
+package micronaut.kafka.avro.backoff
 
 import org.apache.avro.generic.GenericDatumWriter
 import org.apache.avro.generic.GenericRecord
 import org.apache.avro.io.DatumWriter
 import org.apache.avro.io.EncoderFactory
-import org.apache.avro.specific.SpecificRecordBase
 import org.apache.kafka.common.serialization.Serializer
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

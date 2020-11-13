@@ -2,7 +2,6 @@ package micronaut.kafka.avro.config
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer
 import io.micronaut.context.annotation.Value
-import micronaut.kafka.avro.kafka.AvroSerializer
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringSerializer
 import java.util.*
@@ -21,7 +20,6 @@ class ProducerProperty {
     val props
         get() = Properties().apply {
             put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer::class.java.canonicalName)
-//            put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, AvroSerializer::class.java.canonicalName)
             put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer::class.java.canonicalName)
             put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, env["BOOTSTRAP_SERVERS"] ?: bootstrapServers)
             put("schema.registry.url", env["SCHEMA_REGISTRY_URL_CONFIG"] ?: schemaRegistryUrl)
