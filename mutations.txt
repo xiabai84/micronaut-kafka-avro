@@ -1,6 +1,10 @@
-mutation {
-  createPartnerV1(partnerV1: {id:"23", vorname: "bai", nachname: "xia"})
-  {
+mutation{
+  createPartnerV1(partnerV1: {
+    id:"1234",
+		vorname: "bai",
+    nachname: "xia",
+    email: "test@test.com"
+  }) {
     id
     vorname
     nachname
@@ -8,13 +12,17 @@ mutation {
   }
 }
 
+
 mutation {
-  createPartnerV2(partnerV2: {id:"23", vorname: "bai", nachname: "xia", age: 36})
-  {
+  createPartnerV2(partnerV2: {
+    id: "12345",
+    vorname: "zi",
+    nachname: "lin",
+    age: 30
+  }) {
     id
     vorname
     nachname
     age
-    email
   }
 }

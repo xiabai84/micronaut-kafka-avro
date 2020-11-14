@@ -4,39 +4,37 @@ import micronaut.kafka.avro.utils.loadAvroSchema
 import org.apache.avro.Schema
 import org.apache.avro.generic.GenericData
 import org.apache.avro.generic.GenericRecord
-import org.apache.avro.generic.GenericRecordBuilder
-import org.apache.avro.specific.SpecificRecord
-import org.apache.avro.specific.SpecificRecordBuilderBase
 
-
-data class PartnerV1(
+data class PartnerV3(
         override val id: String,
         val vorname: String,
         val nachname: String,
-        val email: String? = null // like schema of v1 defined
+        val age: Int? = null,
+        val email: String? = null
+
 ): Partner
 
-fun PartnerV1.toGenericRecord(): GenericRecord {
+fun PartnerV3.toGenericRecord(): GenericRecord {
     val partnerSchema = Schema.Parser()
-            .parse(loadAvroSchema(filename = "partner-v1.avsc"))
+            .parse(loadAvroSchema(filename = "partner-v3.avsc"))
     val record = GenericData.Record(partnerSchema)
 
     with (record) {
         put("id", id)
         put("vorname", vorname)
         put("nachname", nachname)
+        put("age", age)
         put("email", email)
     }
-
     return record
 }
 
-fun GenericRecord.toPartnerV1(): PartnerV1 {
-    println("aktuelle $schema")
-    return PartnerV1(
+fun GenericRecord.toPartnerV3(): PartnerV3 {
+    return PartnerV3(
         get("id").toString(),
         get("vorname").toString(),
         get("nachname").toString(),
-        get("email")?.toString()
+        get("age") as Int,
+        get("email").toString()
     )
 }

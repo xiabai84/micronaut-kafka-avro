@@ -9,8 +9,7 @@ data class PartnerV2(
         override val id: String,
         val vorname: String,
         val nachname: String,
-        val age: Int?,
-        val email: String?
+        val age: Int? = null // like schema defined
 ): Partner
 
 fun PartnerV2.toGenericRecord(): GenericRecord {
@@ -23,17 +22,15 @@ fun PartnerV2.toGenericRecord(): GenericRecord {
         put("vorname", vorname)
         put("nachname", nachname)
         put("age", age)
-        put("email", email)
     }
     return record
 }
 
 fun GenericRecord.toPartnerV2(): PartnerV2 {
     return PartnerV2(
-            get("id") as String,
-            get("vorname") as String,
-            get("nachname") as String,
-            get("age") as Int,
-            get("email") as String
+            get("id").toString(),
+            get("vorname").toString(),
+            get("nachname").toString(),
+            get("age") as Int
     )
 }

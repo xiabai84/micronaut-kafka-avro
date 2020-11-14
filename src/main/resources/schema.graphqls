@@ -10,7 +10,6 @@ input InputPartnerV2 {
     vorname: String
     nachname: String
     age: Int
-    email: String
 }
 
 interface Partner {
@@ -29,7 +28,6 @@ type PartnerV2 implements Partner {
     vorname: String
     nachname: String
     age: Int
-    email: String
 }
 
 type Mutation {

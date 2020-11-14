@@ -24,8 +24,7 @@ class PartnerV2MutationDataFetcher(private val mutation: MutationService) : Fetc
                 id = (partnerInput["id"] ?: "default") as String,
                 vorname = (partnerInput["vorname"] ?: "default") as String,
                 nachname = (partnerInput["nachname"] ?: "default") as String,
-                age = partnerInput["age"] as Int?,
-                email = partnerInput["email"] as String?
+                age = partnerInput["age"] as Int?
         )
 
         mutation.sendPartnerV2(partner)

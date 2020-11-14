@@ -33,7 +33,6 @@ class ProducerClient(
                 is PartnerV1 -> send(ProducerRecord(topicConfig.partnerTopic, partner.id, partner.toGenericRecord()))
                 is PartnerV2 -> send(ProducerRecord(topicConfig.partnerTopic, partner.id, partner.toGenericRecord()))
             }
-
             flush()
             close()
             logger.info("$partner")

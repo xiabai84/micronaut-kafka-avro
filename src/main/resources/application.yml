@@ -10,10 +10,6 @@ kafka:
   schema:
     registry:
       url: http://localhost:8081
-  streams:
-    default:
-      application.id: partner-topology
-      processing.guarantee: exactly_once
 
 graphql-factory-config:
   classpath: classpath:schema.graphqls
