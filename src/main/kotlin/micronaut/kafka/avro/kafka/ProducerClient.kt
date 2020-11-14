@@ -4,10 +4,6 @@ import io.micronaut.context.annotation.Factory
 import micronaut.kafka.avro.config.ProducerProperty
 import micronaut.kafka.avro.config.TopicConfig
 import micronaut.kafka.avro.model.Partner
-import micronaut.kafka.avro.model.PartnerV1
-import micronaut.kafka.avro.model.PartnerV2
-import micronaut.kafka.avro.model.toGenericRecord
-import org.apache.avro.generic.GenericRecord
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.Producer
 import org.apache.kafka.clients.producer.ProducerRecord
@@ -26,13 +22,10 @@ class ProducerClient(
     @Singleton
     fun sendToPartnerTopic(partner: Partner): Partner? {
         val props = producerProperty.props
-        val producer: Producer<String, GenericRecord> = KafkaProducer(props)
+        val producer: Producer<CharSequence, Partner> = KafkaProducer(props)
 
         with (producer) {
-            when (partner){
-                is PartnerV1 -> send(ProducerRecord(topicConfig.partnerTopic, partner.id, partner.toGenericRecord()))
-                is PartnerV2 -> send(ProducerRecord(topicConfig.partnerTopic, partner.id, partner.toGenericRecord()))
-            }
+            send(ProducerRecord(topicConfig.partnerTopic, partner.id, partner))
             flush()
             close()
             logger.info("$partner")

@@ -5,34 +5,15 @@ input InputPartnerV1 {
     email: String
 }
 
-input InputPartnerV2 {
-    id: ID!
-    vorname: String
-    nachname: String
-    age: Int
-}
-
-interface Partner {
-    id: ID!
-}
-
-type PartnerV1 implements Partner {
+type Partner {
     id: ID!
     vorname: String
     nachname: String
     email: String
 }
 
-type PartnerV2 implements Partner {
-    id: ID!
-    vorname: String
-    nachname: String
-    age: Int
-}
-
 type Mutation {
-    createPartnerV1(partnerV1: InputPartnerV1!): PartnerV1!
-    createPartnerV2(partnerV2: InputPartnerV2!): PartnerV2!
+    createPartnerV1(partnerV1: InputPartnerV1!): Partner!
 }
 
 type Query {

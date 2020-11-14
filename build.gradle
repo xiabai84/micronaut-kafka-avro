@@ -1,3 +1,10 @@
+import com.commercehub.gradle.plugin.avro.GenerateAvroJavaTask
+
+buildscript {
+    dependencies {
+        classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.20.0"
+    }
+}
 
 plugins {
     id "org.jetbrains.kotlin.jvm" version "1.4.10"
@@ -5,6 +12,7 @@ plugins {
     id "org.jetbrains.kotlin.plugin.allopen" version "1.4.10"
     id "com.github.johnrengelman.shadow" version "6.0.0"
     id "io.micronaut.application" version '1.0.3'
+    id "com.commercehub.gradle.plugin.avro" version "0.20.0"
 }
 
 version "0.1"
@@ -12,26 +20,23 @@ group "micronaut.kafka.avro"
 
 repositories {
     mavenCentral()
-    jcenter()
-    maven {
-        url "https://packages.confluent.io/maven/"
-    }
+    maven { url "https://jitpack.io/" }
+    maven { url "https://jcenter.bintray.com" }
+    maven { url 'https://packages.confluent.io/maven/' }
 }
 
-micronaut {
-    runtime "netty"
-    testRuntime "junit5"
-    processing {
-        incremental true
-        annotations "micronaut.kafka.avro.*"
-    }
+configurations {
+    developmentOnly
 }
 
 dependencies {
-    implementation("io.confluent:kafka-avro-serializer:6.0.0")
-    implementation("io.confluent:kafka-streams-avro-serde:6.0.0")
+    implementation "javax.annotation:javax.annotation-api"
+    compile "org.apache.avro:avro:1.10.0"
+    implementation("io.confluent:kafka-avro-serializer:$confluentVersion")
+    implementation("io.confluent:kafka-streams-avro-serde:$confluentVersion")
+    implementation("io.confluent:kafka-json-serializer:$confluentVersion")
+    implementation("io.confluent:kafka-json-schema-serializer:$confluentVersion")
 
-    implementation("org.apache.avro:avro-compiler:1.10.0")
     implementation("io.micronaut:micronaut-validation")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
@@ -48,11 +53,20 @@ dependencies {
     testImplementation("org.apache.kafka:kafka-streams-test-utils:2.5.0")
     testImplementation "org.assertj:assertj-core:3.14.0"
     testImplementation "io.mockk:mockk:1.9.3"
-
 }
 
+run.jvmArgs('-noverify', '-XX:TieredStopAtLevel=1', '-Dcom.sun.management.jmxremote')
 test.classpath += configurations.developmentOnly
 mainClassName = "micronaut.kafka.avro.Application"
+
+micronaut {
+    runtime "netty"
+    testRuntime "junit5"
+    processing {
+        incremental true
+        annotations "micronaut.kafka.avro.*"
+    }
+}
 
 java {
     sourceCompatibility = JavaVersion.toVersion('11')
@@ -63,8 +77,30 @@ compileKotlin {
         jvmTarget = '11'
     }
 }
+
 compileTestKotlin {
     kotlinOptions {
         jvmTarget = '11'
     }
+}
+
+tasks.withType(JavaCompile){
+    options.encoding = "UTF-8"
+    options.compilerArgs.add('-parameters')
+}
+
+shadowJar {
+    mergeServiceFiles()
+}
+
+task generateAvro(type: GenerateAvroJavaTask) {
+    source("src/main/resources/avro")
+    outputDir = file("src/main/java")
+}
+
+compileJava.source(generateAvro.outputs)
+
+avro {
+    stringType = "CharSequence"
+    fieldVisibility = "PRIVATE"
 }

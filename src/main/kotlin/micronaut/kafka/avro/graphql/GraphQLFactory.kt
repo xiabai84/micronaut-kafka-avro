@@ -8,9 +8,6 @@ import io.micronaut.context.annotation.Bean
 import io.micronaut.context.annotation.Factory
 import io.micronaut.core.io.ResourceResolver
 import micronaut.kafka.avro.config.GraphQLFactoryConfig
-import micronaut.kafka.avro.model.Partner
-import micronaut.kafka.avro.model.PartnerV1
-import micronaut.kafka.avro.model.PartnerV2
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import javax.inject.Singleton
@@ -39,13 +36,6 @@ class GraphQLFactory(private val config: GraphQLFactoryConfig) {
 
         val runtimeWiring = fetcherRegistry
                 .fold(RuntimeWiring.newRuntimeWiring()) { typeWiring, f -> typeWiring.type(f.schemaType, f::register) }
-                .type(TypeRuntimeWiring.newTypeWiring("Partner").typeResolver {
-                    when (it.getObject<Partner>()) {
-                        is PartnerV1 -> it.schema.getObjectType("PartnerV1")
-                        is PartnerV2 -> it.schema.getObjectType("PartnerV2")
-                        else -> null
-                    }
-                }.build())
                 .build()
 
         val graphQLSchema = schemaGenerator.makeExecutableSchema(typeRegistry, runtimeWiring)
@@ -53,8 +43,10 @@ class GraphQLFactory(private val config: GraphQLFactoryConfig) {
         return GraphQL.newGraphQL(graphQLSchema).build()
     }
 
-    private fun isSchemaRegistered(schemaType: String, typeDefinitionRegistry: TypeDefinitionRegistry,
-                                   vararg registry: Fetcher<*>) {
+    private fun isSchemaRegistered(
+            schemaType: String, typeDefinitionRegistry: TypeDefinitionRegistry,
+            vararg registry: Fetcher<*>,
+    ) {
 
         val graphqlSchemaDef = typeDefinitionRegistry.types()[schemaType] as ObjectTypeDefinition
 
