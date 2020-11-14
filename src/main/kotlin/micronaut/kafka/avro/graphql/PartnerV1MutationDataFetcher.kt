@@ -25,7 +25,7 @@ class PartnerV1MutationDataFetcher(private val mutation: MutationService) : Fetc
                 .setEmail(partnerInput["email"])
                 .build()
 
-        mutation.sendPartnerV1(partner)
+        mutation.sendPartner(partner)
         return partner
     }
 

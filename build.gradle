@@ -94,10 +94,9 @@ shadowJar {
 }
 
 task generateAvro(type: GenerateAvroJavaTask) {
-    source("src/main/resources/avro")
+    source("src/main/resources/avro/v1")
     outputDir = file("src/main/java")
 }
-
 compileJava.source(generateAvro.outputs)
 
 avro {
