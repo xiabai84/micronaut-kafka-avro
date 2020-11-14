@@ -8,21 +8,21 @@ import javax.inject.Singleton
 
 @Singleton
 @SuppressWarnings("Duplicates")
-class PartnerV1MutationDataFetcher(private val mutation: MutationService) : Fetcher<Partner> {
+class PartnerV2MutationDataFetcher(private val mutation: MutationService) : Fetcher<Partner> {
 
     override val schemaType: String
         get() = "Mutation"
 
     override val graphQlEndpoint: String
-        get() = "createPartnerV1"
+        get() = "createPartnerV2"
 
     override fun getDataFetcher(env: DataFetchingEnvironment): Partner {
-        val partnerInput = env.getArgument<Map<String, String?>>("partnerV1")
+        val partnerInput = env.getArgument<Map<String, *>>("partnerV2")
         val partner = Partner.newBuilder()
-                .setId(partnerInput["id"] ?: "default")
-                .setVorname(partnerInput["vorname"] ?: "default")
-                .setNachname(partnerInput["nachname"] ?: "default")
-                .setEmail(partnerInput["email"])
+                .setId(partnerInput["id"]  as String)
+                .setVorname(partnerInput["vorname"]  as String)
+                .setNachname(partnerInput["nachname"] as String)
+                .setAge(partnerInput["age"] as Int?)
                 .build()
 
         mutation.sendPartner(partner)

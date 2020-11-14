@@ -1,19 +1,19 @@
-input InputPartnerV1 {
+input InputPartnerV2 {
     id: ID!
     vorname: String
     nachname: String
-    email: String
+    age: Int
 }
 
 type Partner {
     id: ID!
     vorname: String
     nachname: String
-    email: String
+    age: Int
 }
 
 type Mutation {
-    createPartnerV1(partnerV1: InputPartnerV1!): Partner!
+    createPartnerV2(partnerV2: InputPartnerV2!): Partner!
 }
 
 type Query {
