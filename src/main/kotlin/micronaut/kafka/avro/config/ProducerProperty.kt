@@ -1,6 +1,7 @@
 package micronaut.kafka.avro.config
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer
+import io.confluent.kafka.serializers.json.KafkaJsonSchemaSerializer
 import io.micronaut.context.annotation.Value
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringSerializer

@@ -3,7 +3,6 @@ package micronaut.kafka.avro.graphql
 import graphql.schema.DataFetchingEnvironment
 import graphql.schema.idl.TypeRuntimeWiring
 import micronaut.kafka.avro.model.Partner
-import micronaut.kafka.avro.model.PartnerV1
 import micronaut.kafka.avro.service.MutationService
 import javax.inject.Singleton
 
@@ -19,12 +18,12 @@ class PartnerV1MutationDataFetcher(private val mutation: MutationService) : Fetc
 
     override fun getDataFetcher(env: DataFetchingEnvironment): Partner {
         val partnerInput = env.getArgument<Map<String, String?>>("partnerV1")
-        val partner = PartnerV1(
-                id = partnerInput["id"] ?: "default",
-                vorname = partnerInput["vorname"] ?: "default",
-                nachname = partnerInput["nachname"] ?: "default",
-                email = partnerInput["email"]
-        )
+        val partner = Partner.newBuilder()
+                .setId(partnerInput["id"] ?: "default")
+                .setVorname(partnerInput["vorname"] ?: "default")
+                .setNachname(partnerInput["nachname"] ?: "default")
+                .setEmail(partnerInput["email"])
+                .build()
 
         mutation.sendPartnerV1(partner)
         return partner
