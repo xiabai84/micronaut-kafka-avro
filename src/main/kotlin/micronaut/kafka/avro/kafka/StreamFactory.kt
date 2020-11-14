@@ -52,15 +52,14 @@ class StreamFactory(private val topics: TopicConfig) {
         )
 
         stream.foreach { key, value ->
-            println("###original $key, $value")
+            println("original $key, $value")
             val partner = PartnerView(
                     id = value.id.toString(),
                     vorname = value.vorname.toString(),
                     nachname = value.nachname.toString(),
-                    email = value.email.toString()
+                    email = value.email?.toString()
             )
             println("partner: $partner")
-            println("partner in CharSeq: $value")
         }
 
         return stream

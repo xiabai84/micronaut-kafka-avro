@@ -1,0 +1,2 @@
+kafka-consumer-groups  --list --bootstrap-server localhost:9092
+kafka-consumer-groups --bootstrap-server localhost:9092 --group micronaut-kafka-avro --reset-offsets --to-earliest --all-topics --execute
