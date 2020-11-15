@@ -1,7 +1,12 @@
 # micronaut-kafka-avro
 Schema-Evolution by using Kafka, Micronaut and Avro serialization.
 
-Technologies:
+## Scope:
+* Creating auto generated SpecificRecord class using gradle-avro-plugin and Avro file
+* Producer can send Avro serialized data with different schema version
+* Consumer can use auto generated class consume all kinds of predefined schema without breaking
+
+## Technologies:
 * Kotlin 1.4.0
 * Confluent Platform 6.0.0
 * Micronaut 2.1.2
