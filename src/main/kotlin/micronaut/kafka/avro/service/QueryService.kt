@@ -22,7 +22,7 @@ class QueryService(
                         vorname = partner.vorname.toString(),
                         nachname = partner.nachname.toString(),
                         age = partner.age,
-                        email = partner.email.toString()
+                        email = partner.email?.toString()
                 )
             }
             .orElse(null)

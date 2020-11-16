@@ -74,7 +74,7 @@ class StreamFactory(
                     vorname = value.vorname.toString(),
                     nachname = value.nachname.toString(),
                     age = value.age,
-                    email = value.email.toString()
+                    email = value.email?.toString()
             )
             println("partner: $partner")
         }
