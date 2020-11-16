@@ -1,7 +1,7 @@
 ---
 micronaut:
   application:
-    name: micronaut-kafka-avro
+    name: micronaut-kafka-avro-v2
 
 ---
 kafka:
@@ -10,6 +10,10 @@ kafka:
   schema:
     registry:
       url: http://localhost:8081
+  streams:
+    default:
+      application.id: partner-v2
+      processing.guarantee: exactly_once
 
 graphql-factory-config:
   classpath: classpath:schema.graphqls

@@ -57,11 +57,9 @@ class StreamFactory(private val topics: TopicConfig) {
                     id = value.id.toString(),
                     vorname = value.vorname.toString(),
                     nachname = value.nachname.toString(),
-                    email = null,
                     age = value.age
             )
             println("partner: $partner")
-            println("partner in CharSeq: $value")
         }
 
         return stream
