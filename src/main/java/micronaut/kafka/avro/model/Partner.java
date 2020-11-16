@@ -15,8 +15,8 @@ import org.apache.avro.message.SchemaStore;
 /** Partner is Kunden von VKB, kann sowohl juristische Person als auch natuerliche Person sein */
 @org.apache.avro.specific.AvroGenerated
 public class Partner extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -2627508177165081017L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Partner\",\"namespace\":\"micronaut.kafka.avro.model\",\"doc\":\"Partner is Kunden von VKB, kann sowohl juristische Person als auch natuerliche Person sein\",\"fields\":[{\"name\":\"id\",\"type\":\"string\",\"doc\":\"Partner ID\"},{\"name\":\"vorname\",\"type\":\"string\",\"doc\":\"Vorname des Partners\"},{\"name\":\"nachname\",\"type\":\"string\",\"doc\":\"Nachname des Partners\"},{\"name\":\"email\",\"type\":[\"null\",\"string\"],\"doc\":\"Email des Partners\",\"default\":null}],\"version\":\"1\"}");
+  private static final long serialVersionUID = -4995249289846960375L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Partner\",\"namespace\":\"micronaut.kafka.avro.model\",\"doc\":\"Partner is Kunden von VKB, kann sowohl juristische Person als auch natuerliche Person sein\",\"fields\":[{\"name\":\"id\",\"type\":\"string\",\"doc\":\"Partner ID\"},{\"name\":\"vorname\",\"type\":\"string\",\"doc\":\"Vorname des Partners\"},{\"name\":\"nachname\",\"type\":\"string\",\"doc\":\"Nachname des Partners\"},{\"name\":\"age\",\"type\":[\"null\",\"int\"],\"doc\":\"Die Alte des Partners\",\"default\":null},{\"name\":\"email\",\"type\":[\"null\",\"string\"],\"doc\":\"Email des Partners\",\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -78,6 +78,8 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
    private java.lang.CharSequence vorname;
   /** Nachname des Partners */
    private java.lang.CharSequence nachname;
+  /** Die Alte des Partners */
+   private java.lang.Integer age;
   /** Email des Partners */
    private java.lang.CharSequence email;
 
@@ -93,12 +95,14 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
    * @param id Partner ID
    * @param vorname Vorname des Partners
    * @param nachname Nachname des Partners
+   * @param age Die Alte des Partners
    * @param email Email des Partners
    */
-  public Partner(java.lang.CharSequence id, java.lang.CharSequence vorname, java.lang.CharSequence nachname, java.lang.CharSequence email) {
+  public Partner(java.lang.CharSequence id, java.lang.CharSequence vorname, java.lang.CharSequence nachname, java.lang.Integer age, java.lang.CharSequence email) {
     this.id = id;
     this.vorname = vorname;
     this.nachname = nachname;
+    this.age = age;
     this.email = email;
   }
 
@@ -110,7 +114,8 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
     case 0: return id;
     case 1: return vorname;
     case 2: return nachname;
-    case 3: return email;
+    case 3: return age;
+    case 4: return email;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -122,7 +127,8 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
     case 0: id = (java.lang.CharSequence)value$; break;
     case 1: vorname = (java.lang.CharSequence)value$; break;
     case 2: nachname = (java.lang.CharSequence)value$; break;
-    case 3: email = (java.lang.CharSequence)value$; break;
+    case 3: age = (java.lang.Integer)value$; break;
+    case 4: email = (java.lang.CharSequence)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -179,6 +185,24 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
    */
   public void setNachname(java.lang.CharSequence value) {
     this.nachname = value;
+  }
+
+  /**
+   * Gets the value of the 'age' field.
+   * @return Die Alte des Partners
+   */
+  public java.lang.Integer getAge() {
+    return age;
+  }
+
+
+  /**
+   * Sets the value of the 'age' field.
+   * Die Alte des Partners
+   * @param value the value to set.
+   */
+  public void setAge(java.lang.Integer value) {
+    this.age = value;
   }
 
   /**
@@ -246,6 +270,8 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
     private java.lang.CharSequence vorname;
     /** Nachname des Partners */
     private java.lang.CharSequence nachname;
+    /** Die Alte des Partners */
+    private java.lang.Integer age;
     /** Email des Partners */
     private java.lang.CharSequence email;
 
@@ -272,9 +298,13 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
         this.nachname = data().deepCopy(fields()[2].schema(), other.nachname);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
-      if (isValidValue(fields()[3], other.email)) {
-        this.email = data().deepCopy(fields()[3].schema(), other.email);
+      if (isValidValue(fields()[3], other.age)) {
+        this.age = data().deepCopy(fields()[3].schema(), other.age);
         fieldSetFlags()[3] = other.fieldSetFlags()[3];
+      }
+      if (isValidValue(fields()[4], other.email)) {
+        this.email = data().deepCopy(fields()[4].schema(), other.email);
+        fieldSetFlags()[4] = other.fieldSetFlags()[4];
       }
     }
 
@@ -296,9 +326,13 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
         this.nachname = data().deepCopy(fields()[2].schema(), other.nachname);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.email)) {
-        this.email = data().deepCopy(fields()[3].schema(), other.email);
+      if (isValidValue(fields()[3], other.age)) {
+        this.age = data().deepCopy(fields()[3].schema(), other.age);
         fieldSetFlags()[3] = true;
+      }
+      if (isValidValue(fields()[4], other.email)) {
+        this.email = data().deepCopy(fields()[4].schema(), other.email);
+        fieldSetFlags()[4] = true;
       }
     }
 
@@ -435,6 +469,50 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
     }
 
     /**
+      * Gets the value of the 'age' field.
+      * Die Alte des Partners
+      * @return The value.
+      */
+    public java.lang.Integer getAge() {
+      return age;
+    }
+
+
+    /**
+      * Sets the value of the 'age' field.
+      * Die Alte des Partners
+      * @param value The value of 'age'.
+      * @return This builder.
+      */
+    public micronaut.kafka.avro.model.Partner.Builder setAge(java.lang.Integer value) {
+      validate(fields()[3], value);
+      this.age = value;
+      fieldSetFlags()[3] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'age' field has been set.
+      * Die Alte des Partners
+      * @return True if the 'age' field has been set, false otherwise.
+      */
+    public boolean hasAge() {
+      return fieldSetFlags()[3];
+    }
+
+
+    /**
+      * Clears the value of the 'age' field.
+      * Die Alte des Partners
+      * @return This builder.
+      */
+    public micronaut.kafka.avro.model.Partner.Builder clearAge() {
+      age = null;
+      fieldSetFlags()[3] = false;
+      return this;
+    }
+
+    /**
       * Gets the value of the 'email' field.
       * Email des Partners
       * @return The value.
@@ -451,9 +529,9 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public micronaut.kafka.avro.model.Partner.Builder setEmail(java.lang.CharSequence value) {
-      validate(fields()[3], value);
+      validate(fields()[4], value);
       this.email = value;
-      fieldSetFlags()[3] = true;
+      fieldSetFlags()[4] = true;
       return this;
     }
 
@@ -463,7 +541,7 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'email' field has been set, false otherwise.
       */
     public boolean hasEmail() {
-      return fieldSetFlags()[3];
+      return fieldSetFlags()[4];
     }
 
 
@@ -474,7 +552,7 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
       */
     public micronaut.kafka.avro.model.Partner.Builder clearEmail() {
       email = null;
-      fieldSetFlags()[3] = false;
+      fieldSetFlags()[4] = false;
       return this;
     }
 
@@ -486,7 +564,8 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
         record.id = fieldSetFlags()[0] ? this.id : (java.lang.CharSequence) defaultValue(fields()[0]);
         record.vorname = fieldSetFlags()[1] ? this.vorname : (java.lang.CharSequence) defaultValue(fields()[1]);
         record.nachname = fieldSetFlags()[2] ? this.nachname : (java.lang.CharSequence) defaultValue(fields()[2]);
-        record.email = fieldSetFlags()[3] ? this.email : (java.lang.CharSequence) defaultValue(fields()[3]);
+        record.age = fieldSetFlags()[3] ? this.age : (java.lang.Integer) defaultValue(fields()[3]);
+        record.email = fieldSetFlags()[4] ? this.email : (java.lang.CharSequence) defaultValue(fields()[4]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -525,6 +604,14 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
 
     out.writeString(this.nachname);
 
+    if (this.age == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeInt(this.age);
+    }
+
     if (this.email == null) {
       out.writeIndex(0);
       out.writeNull();
@@ -548,13 +635,20 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
 
       if (in.readIndex() != 1) {
         in.readNull();
+        this.age = null;
+      } else {
+        this.age = in.readInt();
+      }
+
+      if (in.readIndex() != 1) {
+        in.readNull();
         this.email = null;
       } else {
         this.email = in.readString(this.email instanceof Utf8 ? (Utf8)this.email : null);
       }
 
     } else {
-      for (int i = 0; i < 4; i++) {
+      for (int i = 0; i < 5; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.id = in.readString(this.id instanceof Utf8 ? (Utf8)this.id : null);
@@ -569,6 +663,15 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
           break;
 
         case 3:
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.age = null;
+          } else {
+            this.age = in.readInt();
+          }
+          break;
+
+        case 4:
           if (in.readIndex() != 1) {
             in.readNull();
             this.email = null;

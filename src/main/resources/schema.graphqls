@@ -12,11 +12,20 @@ type Partner {
     email: String
 }
 
+type PartnerView {
+    id: ID!
+    vorname: String
+    nachname: String
+    age: Int
+    email: String
+}
+
 type Mutation {
     createPartnerV1(partnerV1: InputPartnerV1!): Partner!
 }
 
 type Query {
+    partnerV3(partnerId: String): PartnerView
 }
 
 schema {
