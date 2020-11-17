@@ -5,6 +5,8 @@ import io.micronaut.configuration.kafka.streams.ConfiguredStreamBuilder
 import io.micronaut.context.annotation.Factory
 import io.micronaut.context.annotation.Value
 import micronaut.kafka.avro.config.TopicConfig
+import micronaut.kafka.avro.model.JuristicPerson
+import micronaut.kafka.avro.model.NaturalPerson
 import micronaut.kafka.avro.model.Partner
 import micronaut.kafka.avro.model.PartnerView
 import org.apache.kafka.clients.consumer.ConsumerConfig
@@ -52,16 +54,27 @@ class StreamFactory(private val topics: TopicConfig) {
         )
 
         stream.foreach { key, value ->
-            println("original $key, $value")
-            val partner = PartnerView(
-                    id = value.id.toString(),
-                    vorname = value.vorname.toString(),
-                    nachname = value.nachname.toString(),
-                    email = value.email?.toString()
-            )
-            println("partner: $partner")
-        }
 
+            val partner = when(value.specInfo) {
+                is NaturalPerson -> PartnerView(
+                        id = value.partnerId.toString(),
+                        vorname = (value.specInfo as NaturalPerson).firstName.toString(),
+                        nachname = (value.specInfo as NaturalPerson).secondName.toString(),
+                        name = null
+                )
+
+                is JuristicPerson -> PartnerView(
+                        id = value.partnerId.toString(),
+                        vorname = null,
+                        nachname = null,
+                        name = (value.specInfo as NaturalPerson).secondName.toString()
+                )
+
+                else -> null
+            }
+            println("serialized data: $key, $value")
+            println("view: $partner  ${value.specInfo::class.java.simpleName}")
+        }
         return stream
     }
 }

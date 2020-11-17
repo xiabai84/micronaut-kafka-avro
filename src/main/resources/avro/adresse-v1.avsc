@@ -1,0 +1,16 @@
+{
+     "type": "record",
+     "namespace": "micronaut.kafka.avro.model",
+     "name": "Adresse",
+     "version": "1",
+     "doc": "",
+     "fields": [
+       { "name": "adresseId", "type": "string", "doc": "Adresse ID" },
+       { "name": "strasse", "type": ["null", "string"], "default": null, "doc": "" },
+       { "name": "hausnummer", "type": ["null", "string"],"default": null, "doc": "" },
+       { "name": "ort", "type": ["null", "string"], "default": null, "doc": "" },
+       { "name": "land", "type": ["null", "string"], "default": null, "doc": "Email des Partners" },
+       { "name": "postleitzahl", "type": ["null", "string"], "default": null, "doc": "Postleitzahl des Partners" },
+       { "name": "hauptadresse", "type": ["null", "string"], "default": null, "doc": "Ist die Hauptadresse des Partners" }
+     ]
+}

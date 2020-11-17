@@ -25,7 +25,7 @@ class ProducerClient(
         val producer: Producer<CharSequence, Partner> = KafkaProducer(props)
 
         with (producer) {
-            send(ProducerRecord(topicConfig.partnerTopic, partner.id, partner))
+            send(ProducerRecord(topicConfig.partnerTopic, partner.partnerId, partner))
             flush()
             close()
             logger.info("$partner")

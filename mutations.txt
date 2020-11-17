@@ -1,14 +1,17 @@
-mutation{
+mutation {
   createPartnerV1(partnerV1: {
-    id:"1234",
-		vorname: "bai",
-    nachname: "xia",
+    partnerId: "123",
+    lastEventId: "test-event-id",
+    type: "NaturalPerson"
+    firstName: "bai",
+    secondName: "xia",
+    birthDay: "1984-04-11",
+    telephone: "7891234",
     email: "test@test.com"
+
   }) {
-    id
-    vorname
-    nachname
-    email
+    partnerId
+    lastEventId
   }
 }
 

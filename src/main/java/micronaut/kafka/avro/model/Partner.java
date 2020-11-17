@@ -12,11 +12,10 @@ import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
-/** Partner is Kunden von VKB, kann sowohl juristische Person als auch natuerliche Person sein */
 @org.apache.avro.specific.AvroGenerated
 public class Partner extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -2627508177165081017L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Partner\",\"namespace\":\"micronaut.kafka.avro.model\",\"doc\":\"Partner is Kunden von VKB, kann sowohl juristische Person als auch natuerliche Person sein\",\"fields\":[{\"name\":\"id\",\"type\":\"string\",\"doc\":\"Partner ID\"},{\"name\":\"vorname\",\"type\":\"string\",\"doc\":\"Vorname des Partners\"},{\"name\":\"nachname\",\"type\":\"string\",\"doc\":\"Nachname des Partners\"},{\"name\":\"email\",\"type\":[\"null\",\"string\"],\"doc\":\"Email des Partners\",\"default\":null}],\"version\":\"1\"}");
+  private static final long serialVersionUID = 4403793600325109763L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Partner\",\"namespace\":\"micronaut.kafka.avro.model\",\"fields\":[{\"name\":\"partnerId\",\"type\":\"string\",\"doc\":\"Customer ID\"},{\"name\":\"lastEventId\",\"type\":[\"null\",\"string\"],\"doc\":\"Latest event id\",\"default\":null},{\"name\":\"partnerInfo\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"PartnerInfo\",\"fields\":[{\"name\":\"partnerId\",\"type\":\"string\",\"doc\":\"Customer ID\"},{\"name\":\"email\",\"type\":\"string\",\"doc\":\"contact email address\"},{\"name\":\"telephone\",\"type\":\"string\",\"doc\":\"contact telephone number\"}],\"version\":\"1\"}],\"doc\":\"Basic information about a partner\",\"default\":null},{\"name\":\"specInfo\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"NaturalPerson\",\"doc\":\"Partner is Kunden von VKB, kann sowohl juristische Person als auch natuerliche Person sein\",\"fields\":[{\"name\":\"type\",\"type\":\"string\",\"doc\":\"type of person i.e. NaturalPerson or JuristicPerson\"},{\"name\":\"firstName\",\"type\":\"string\"},{\"name\":\"secondName\",\"type\":\"string\"},{\"name\":\"birthday\",\"type\":\"string\"}],\"version\":\"1\"},{\"type\":\"record\",\"name\":\"JuristicPerson\",\"doc\":\"Partner such as company or organisation\",\"fields\":[{\"name\":\"type\",\"type\":\"string\",\"doc\":\"type of person i.e. NaturalPerson or JuristicPerson\"},{\"name\":\"name\",\"type\":\"string\"}],\"version\":\"1\"}],\"doc\":\"Polymorphic type of a partner object\",\"default\":null}],\"version\":\"1\"}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -72,14 +71,14 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
     return DECODER.decode(b);
   }
 
-  /** Partner ID */
-   private java.lang.CharSequence id;
-  /** Vorname des Partners */
-   private java.lang.CharSequence vorname;
-  /** Nachname des Partners */
-   private java.lang.CharSequence nachname;
-  /** Email des Partners */
-   private java.lang.CharSequence email;
+  /** Customer ID */
+   private java.lang.CharSequence partnerId;
+  /** Latest event id */
+   private java.lang.CharSequence lastEventId;
+  /** Basic information about a partner */
+   private micronaut.kafka.avro.model.PartnerInfo partnerInfo;
+  /** Polymorphic type of a partner object */
+   private java.lang.Object specInfo;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -90,16 +89,16 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
 
   /**
    * All-args constructor.
-   * @param id Partner ID
-   * @param vorname Vorname des Partners
-   * @param nachname Nachname des Partners
-   * @param email Email des Partners
+   * @param partnerId Customer ID
+   * @param lastEventId Latest event id
+   * @param partnerInfo Basic information about a partner
+   * @param specInfo Polymorphic type of a partner object
    */
-  public Partner(java.lang.CharSequence id, java.lang.CharSequence vorname, java.lang.CharSequence nachname, java.lang.CharSequence email) {
-    this.id = id;
-    this.vorname = vorname;
-    this.nachname = nachname;
-    this.email = email;
+  public Partner(java.lang.CharSequence partnerId, java.lang.CharSequence lastEventId, micronaut.kafka.avro.model.PartnerInfo partnerInfo, java.lang.Object specInfo) {
+    this.partnerId = partnerId;
+    this.lastEventId = lastEventId;
+    this.partnerInfo = partnerInfo;
+    this.specInfo = specInfo;
   }
 
   public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
@@ -107,10 +106,10 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
   // Used by DatumWriter.  Applications should not call.
   public java.lang.Object get(int field$) {
     switch (field$) {
-    case 0: return id;
-    case 1: return vorname;
-    case 2: return nachname;
-    case 3: return email;
+    case 0: return partnerId;
+    case 1: return lastEventId;
+    case 2: return partnerInfo;
+    case 3: return specInfo;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -119,84 +118,84 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: id = (java.lang.CharSequence)value$; break;
-    case 1: vorname = (java.lang.CharSequence)value$; break;
-    case 2: nachname = (java.lang.CharSequence)value$; break;
-    case 3: email = (java.lang.CharSequence)value$; break;
+    case 0: partnerId = (java.lang.CharSequence)value$; break;
+    case 1: lastEventId = (java.lang.CharSequence)value$; break;
+    case 2: partnerInfo = (micronaut.kafka.avro.model.PartnerInfo)value$; break;
+    case 3: specInfo = value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
 
   /**
-   * Gets the value of the 'id' field.
-   * @return Partner ID
+   * Gets the value of the 'partnerId' field.
+   * @return Customer ID
    */
-  public java.lang.CharSequence getId() {
-    return id;
+  public java.lang.CharSequence getPartnerId() {
+    return partnerId;
   }
 
 
   /**
-   * Sets the value of the 'id' field.
-   * Partner ID
+   * Sets the value of the 'partnerId' field.
+   * Customer ID
    * @param value the value to set.
    */
-  public void setId(java.lang.CharSequence value) {
-    this.id = value;
+  public void setPartnerId(java.lang.CharSequence value) {
+    this.partnerId = value;
   }
 
   /**
-   * Gets the value of the 'vorname' field.
-   * @return Vorname des Partners
+   * Gets the value of the 'lastEventId' field.
+   * @return Latest event id
    */
-  public java.lang.CharSequence getVorname() {
-    return vorname;
+  public java.lang.CharSequence getLastEventId() {
+    return lastEventId;
   }
 
 
   /**
-   * Sets the value of the 'vorname' field.
-   * Vorname des Partners
+   * Sets the value of the 'lastEventId' field.
+   * Latest event id
    * @param value the value to set.
    */
-  public void setVorname(java.lang.CharSequence value) {
-    this.vorname = value;
+  public void setLastEventId(java.lang.CharSequence value) {
+    this.lastEventId = value;
   }
 
   /**
-   * Gets the value of the 'nachname' field.
-   * @return Nachname des Partners
+   * Gets the value of the 'partnerInfo' field.
+   * @return Basic information about a partner
    */
-  public java.lang.CharSequence getNachname() {
-    return nachname;
+  public micronaut.kafka.avro.model.PartnerInfo getPartnerInfo() {
+    return partnerInfo;
   }
 
 
   /**
-   * Sets the value of the 'nachname' field.
-   * Nachname des Partners
+   * Sets the value of the 'partnerInfo' field.
+   * Basic information about a partner
    * @param value the value to set.
    */
-  public void setNachname(java.lang.CharSequence value) {
-    this.nachname = value;
+  public void setPartnerInfo(micronaut.kafka.avro.model.PartnerInfo value) {
+    this.partnerInfo = value;
   }
 
   /**
-   * Gets the value of the 'email' field.
-   * @return Email des Partners
+   * Gets the value of the 'specInfo' field.
+   * @return Polymorphic type of a partner object
    */
-  public java.lang.CharSequence getEmail() {
-    return email;
+  public java.lang.Object getSpecInfo() {
+    return specInfo;
   }
 
 
   /**
-   * Sets the value of the 'email' field.
-   * Email des Partners
+   * Sets the value of the 'specInfo' field.
+   * Polymorphic type of a partner object
    * @param value the value to set.
    */
-  public void setEmail(java.lang.CharSequence value) {
-    this.email = value;
+  public void setSpecInfo(java.lang.Object value) {
+    this.specInfo = value;
   }
 
   /**
@@ -240,14 +239,15 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<Partner>
     implements org.apache.avro.data.RecordBuilder<Partner> {
 
-    /** Partner ID */
-    private java.lang.CharSequence id;
-    /** Vorname des Partners */
-    private java.lang.CharSequence vorname;
-    /** Nachname des Partners */
-    private java.lang.CharSequence nachname;
-    /** Email des Partners */
-    private java.lang.CharSequence email;
+    /** Customer ID */
+    private java.lang.CharSequence partnerId;
+    /** Latest event id */
+    private java.lang.CharSequence lastEventId;
+    /** Basic information about a partner */
+    private micronaut.kafka.avro.model.PartnerInfo partnerInfo;
+    private micronaut.kafka.avro.model.PartnerInfo.Builder partnerInfoBuilder;
+    /** Polymorphic type of a partner object */
+    private java.lang.Object specInfo;
 
     /** Creates a new Builder */
     private Builder() {
@@ -260,20 +260,23 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
      */
     private Builder(micronaut.kafka.avro.model.Partner.Builder other) {
       super(other);
-      if (isValidValue(fields()[0], other.id)) {
-        this.id = data().deepCopy(fields()[0].schema(), other.id);
+      if (isValidValue(fields()[0], other.partnerId)) {
+        this.partnerId = data().deepCopy(fields()[0].schema(), other.partnerId);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
-      if (isValidValue(fields()[1], other.vorname)) {
-        this.vorname = data().deepCopy(fields()[1].schema(), other.vorname);
+      if (isValidValue(fields()[1], other.lastEventId)) {
+        this.lastEventId = data().deepCopy(fields()[1].schema(), other.lastEventId);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
-      if (isValidValue(fields()[2], other.nachname)) {
-        this.nachname = data().deepCopy(fields()[2].schema(), other.nachname);
+      if (isValidValue(fields()[2], other.partnerInfo)) {
+        this.partnerInfo = data().deepCopy(fields()[2].schema(), other.partnerInfo);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
-      if (isValidValue(fields()[3], other.email)) {
-        this.email = data().deepCopy(fields()[3].schema(), other.email);
+      if (other.hasPartnerInfoBuilder()) {
+        this.partnerInfoBuilder = micronaut.kafka.avro.model.PartnerInfo.newBuilder(other.getPartnerInfoBuilder());
+      }
+      if (isValidValue(fields()[3], other.specInfo)) {
+        this.specInfo = data().deepCopy(fields()[3].schema(), other.specInfo);
         fieldSetFlags()[3] = other.fieldSetFlags()[3];
       }
     }
@@ -284,196 +287,235 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
      */
     private Builder(micronaut.kafka.avro.model.Partner other) {
       super(SCHEMA$);
-      if (isValidValue(fields()[0], other.id)) {
-        this.id = data().deepCopy(fields()[0].schema(), other.id);
+      if (isValidValue(fields()[0], other.partnerId)) {
+        this.partnerId = data().deepCopy(fields()[0].schema(), other.partnerId);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.vorname)) {
-        this.vorname = data().deepCopy(fields()[1].schema(), other.vorname);
+      if (isValidValue(fields()[1], other.lastEventId)) {
+        this.lastEventId = data().deepCopy(fields()[1].schema(), other.lastEventId);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.nachname)) {
-        this.nachname = data().deepCopy(fields()[2].schema(), other.nachname);
+      if (isValidValue(fields()[2], other.partnerInfo)) {
+        this.partnerInfo = data().deepCopy(fields()[2].schema(), other.partnerInfo);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.email)) {
-        this.email = data().deepCopy(fields()[3].schema(), other.email);
+      this.partnerInfoBuilder = null;
+      if (isValidValue(fields()[3], other.specInfo)) {
+        this.specInfo = data().deepCopy(fields()[3].schema(), other.specInfo);
         fieldSetFlags()[3] = true;
       }
     }
 
     /**
-      * Gets the value of the 'id' field.
-      * Partner ID
+      * Gets the value of the 'partnerId' field.
+      * Customer ID
       * @return The value.
       */
-    public java.lang.CharSequence getId() {
-      return id;
+    public java.lang.CharSequence getPartnerId() {
+      return partnerId;
     }
 
 
     /**
-      * Sets the value of the 'id' field.
-      * Partner ID
-      * @param value The value of 'id'.
+      * Sets the value of the 'partnerId' field.
+      * Customer ID
+      * @param value The value of 'partnerId'.
       * @return This builder.
       */
-    public micronaut.kafka.avro.model.Partner.Builder setId(java.lang.CharSequence value) {
+    public micronaut.kafka.avro.model.Partner.Builder setPartnerId(java.lang.CharSequence value) {
       validate(fields()[0], value);
-      this.id = value;
+      this.partnerId = value;
       fieldSetFlags()[0] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'id' field has been set.
-      * Partner ID
-      * @return True if the 'id' field has been set, false otherwise.
+      * Checks whether the 'partnerId' field has been set.
+      * Customer ID
+      * @return True if the 'partnerId' field has been set, false otherwise.
       */
-    public boolean hasId() {
+    public boolean hasPartnerId() {
       return fieldSetFlags()[0];
     }
 
 
     /**
-      * Clears the value of the 'id' field.
-      * Partner ID
+      * Clears the value of the 'partnerId' field.
+      * Customer ID
       * @return This builder.
       */
-    public micronaut.kafka.avro.model.Partner.Builder clearId() {
-      id = null;
+    public micronaut.kafka.avro.model.Partner.Builder clearPartnerId() {
+      partnerId = null;
       fieldSetFlags()[0] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'vorname' field.
-      * Vorname des Partners
+      * Gets the value of the 'lastEventId' field.
+      * Latest event id
       * @return The value.
       */
-    public java.lang.CharSequence getVorname() {
-      return vorname;
+    public java.lang.CharSequence getLastEventId() {
+      return lastEventId;
     }
 
 
     /**
-      * Sets the value of the 'vorname' field.
-      * Vorname des Partners
-      * @param value The value of 'vorname'.
+      * Sets the value of the 'lastEventId' field.
+      * Latest event id
+      * @param value The value of 'lastEventId'.
       * @return This builder.
       */
-    public micronaut.kafka.avro.model.Partner.Builder setVorname(java.lang.CharSequence value) {
+    public micronaut.kafka.avro.model.Partner.Builder setLastEventId(java.lang.CharSequence value) {
       validate(fields()[1], value);
-      this.vorname = value;
+      this.lastEventId = value;
       fieldSetFlags()[1] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'vorname' field has been set.
-      * Vorname des Partners
-      * @return True if the 'vorname' field has been set, false otherwise.
+      * Checks whether the 'lastEventId' field has been set.
+      * Latest event id
+      * @return True if the 'lastEventId' field has been set, false otherwise.
       */
-    public boolean hasVorname() {
+    public boolean hasLastEventId() {
       return fieldSetFlags()[1];
     }
 
 
     /**
-      * Clears the value of the 'vorname' field.
-      * Vorname des Partners
+      * Clears the value of the 'lastEventId' field.
+      * Latest event id
       * @return This builder.
       */
-    public micronaut.kafka.avro.model.Partner.Builder clearVorname() {
-      vorname = null;
+    public micronaut.kafka.avro.model.Partner.Builder clearLastEventId() {
+      lastEventId = null;
       fieldSetFlags()[1] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'nachname' field.
-      * Nachname des Partners
+      * Gets the value of the 'partnerInfo' field.
+      * Basic information about a partner
       * @return The value.
       */
-    public java.lang.CharSequence getNachname() {
-      return nachname;
+    public micronaut.kafka.avro.model.PartnerInfo getPartnerInfo() {
+      return partnerInfo;
     }
 
 
     /**
-      * Sets the value of the 'nachname' field.
-      * Nachname des Partners
-      * @param value The value of 'nachname'.
+      * Sets the value of the 'partnerInfo' field.
+      * Basic information about a partner
+      * @param value The value of 'partnerInfo'.
       * @return This builder.
       */
-    public micronaut.kafka.avro.model.Partner.Builder setNachname(java.lang.CharSequence value) {
+    public micronaut.kafka.avro.model.Partner.Builder setPartnerInfo(micronaut.kafka.avro.model.PartnerInfo value) {
       validate(fields()[2], value);
-      this.nachname = value;
+      this.partnerInfoBuilder = null;
+      this.partnerInfo = value;
       fieldSetFlags()[2] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'nachname' field has been set.
-      * Nachname des Partners
-      * @return True if the 'nachname' field has been set, false otherwise.
+      * Checks whether the 'partnerInfo' field has been set.
+      * Basic information about a partner
+      * @return True if the 'partnerInfo' field has been set, false otherwise.
       */
-    public boolean hasNachname() {
+    public boolean hasPartnerInfo() {
       return fieldSetFlags()[2];
     }
 
+    /**
+     * Gets the Builder instance for the 'partnerInfo' field and creates one if it doesn't exist yet.
+     * Basic information about a partner
+     * @return This builder.
+     */
+    public micronaut.kafka.avro.model.PartnerInfo.Builder getPartnerInfoBuilder() {
+      if (partnerInfoBuilder == null) {
+        if (hasPartnerInfo()) {
+          setPartnerInfoBuilder(micronaut.kafka.avro.model.PartnerInfo.newBuilder(partnerInfo));
+        } else {
+          setPartnerInfoBuilder(micronaut.kafka.avro.model.PartnerInfo.newBuilder());
+        }
+      }
+      return partnerInfoBuilder;
+    }
 
     /**
-      * Clears the value of the 'nachname' field.
-      * Nachname des Partners
+     * Sets the Builder instance for the 'partnerInfo' field
+     * Basic information about a partner
+     * @param value The builder instance that must be set.
+     * @return This builder.
+     */
+    public micronaut.kafka.avro.model.Partner.Builder setPartnerInfoBuilder(micronaut.kafka.avro.model.PartnerInfo.Builder value) {
+      clearPartnerInfo();
+      partnerInfoBuilder = value;
+      return this;
+    }
+
+    /**
+     * Checks whether the 'partnerInfo' field has an active Builder instance
+     * Basic information about a partner
+     * @return True if the 'partnerInfo' field has an active Builder instance
+     */
+    public boolean hasPartnerInfoBuilder() {
+      return partnerInfoBuilder != null;
+    }
+
+    /**
+      * Clears the value of the 'partnerInfo' field.
+      * Basic information about a partner
       * @return This builder.
       */
-    public micronaut.kafka.avro.model.Partner.Builder clearNachname() {
-      nachname = null;
+    public micronaut.kafka.avro.model.Partner.Builder clearPartnerInfo() {
+      partnerInfo = null;
+      partnerInfoBuilder = null;
       fieldSetFlags()[2] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'email' field.
-      * Email des Partners
+      * Gets the value of the 'specInfo' field.
+      * Polymorphic type of a partner object
       * @return The value.
       */
-    public java.lang.CharSequence getEmail() {
-      return email;
+    public java.lang.Object getSpecInfo() {
+      return specInfo;
     }
 
 
     /**
-      * Sets the value of the 'email' field.
-      * Email des Partners
-      * @param value The value of 'email'.
+      * Sets the value of the 'specInfo' field.
+      * Polymorphic type of a partner object
+      * @param value The value of 'specInfo'.
       * @return This builder.
       */
-    public micronaut.kafka.avro.model.Partner.Builder setEmail(java.lang.CharSequence value) {
+    public micronaut.kafka.avro.model.Partner.Builder setSpecInfo(java.lang.Object value) {
       validate(fields()[3], value);
-      this.email = value;
+      this.specInfo = value;
       fieldSetFlags()[3] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'email' field has been set.
-      * Email des Partners
-      * @return True if the 'email' field has been set, false otherwise.
+      * Checks whether the 'specInfo' field has been set.
+      * Polymorphic type of a partner object
+      * @return True if the 'specInfo' field has been set, false otherwise.
       */
-    public boolean hasEmail() {
+    public boolean hasSpecInfo() {
       return fieldSetFlags()[3];
     }
 
 
     /**
-      * Clears the value of the 'email' field.
-      * Email des Partners
+      * Clears the value of the 'specInfo' field.
+      * Polymorphic type of a partner object
       * @return This builder.
       */
-    public micronaut.kafka.avro.model.Partner.Builder clearEmail() {
-      email = null;
+    public micronaut.kafka.avro.model.Partner.Builder clearSpecInfo() {
+      specInfo = null;
       fieldSetFlags()[3] = false;
       return this;
     }
@@ -483,10 +525,19 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
     public Partner build() {
       try {
         Partner record = new Partner();
-        record.id = fieldSetFlags()[0] ? this.id : (java.lang.CharSequence) defaultValue(fields()[0]);
-        record.vorname = fieldSetFlags()[1] ? this.vorname : (java.lang.CharSequence) defaultValue(fields()[1]);
-        record.nachname = fieldSetFlags()[2] ? this.nachname : (java.lang.CharSequence) defaultValue(fields()[2]);
-        record.email = fieldSetFlags()[3] ? this.email : (java.lang.CharSequence) defaultValue(fields()[3]);
+        record.partnerId = fieldSetFlags()[0] ? this.partnerId : (java.lang.CharSequence) defaultValue(fields()[0]);
+        record.lastEventId = fieldSetFlags()[1] ? this.lastEventId : (java.lang.CharSequence) defaultValue(fields()[1]);
+        if (partnerInfoBuilder != null) {
+          try {
+            record.partnerInfo = this.partnerInfoBuilder.build();
+          } catch (org.apache.avro.AvroMissingFieldException e) {
+            e.addParentField(record.getSchema().getField("partnerInfo"));
+            throw e;
+          }
+        } else {
+          record.partnerInfo = fieldSetFlags()[2] ? this.partnerInfo : (micronaut.kafka.avro.model.PartnerInfo) defaultValue(fields()[2]);
+        }
+        record.specInfo = fieldSetFlags()[3] ? this.specInfo :  defaultValue(fields()[3]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -514,75 +565,6 @@ public class Partner extends org.apache.avro.specific.SpecificRecordBase impleme
     READER$.read(this, SpecificData.getDecoder(in));
   }
 
-  @Override protected boolean hasCustomCoders() { return true; }
-
-  @Override public void customEncode(org.apache.avro.io.Encoder out)
-    throws java.io.IOException
-  {
-    out.writeString(this.id);
-
-    out.writeString(this.vorname);
-
-    out.writeString(this.nachname);
-
-    if (this.email == null) {
-      out.writeIndex(0);
-      out.writeNull();
-    } else {
-      out.writeIndex(1);
-      out.writeString(this.email);
-    }
-
-  }
-
-  @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
-    throws java.io.IOException
-  {
-    org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
-    if (fieldOrder == null) {
-      this.id = in.readString(this.id instanceof Utf8 ? (Utf8)this.id : null);
-
-      this.vorname = in.readString(this.vorname instanceof Utf8 ? (Utf8)this.vorname : null);
-
-      this.nachname = in.readString(this.nachname instanceof Utf8 ? (Utf8)this.nachname : null);
-
-      if (in.readIndex() != 1) {
-        in.readNull();
-        this.email = null;
-      } else {
-        this.email = in.readString(this.email instanceof Utf8 ? (Utf8)this.email : null);
-      }
-
-    } else {
-      for (int i = 0; i < 4; i++) {
-        switch (fieldOrder[i].pos()) {
-        case 0:
-          this.id = in.readString(this.id instanceof Utf8 ? (Utf8)this.id : null);
-          break;
-
-        case 1:
-          this.vorname = in.readString(this.vorname instanceof Utf8 ? (Utf8)this.vorname : null);
-          break;
-
-        case 2:
-          this.nachname = in.readString(this.nachname instanceof Utf8 ? (Utf8)this.nachname : null);
-          break;
-
-        case 3:
-          if (in.readIndex() != 1) {
-            in.readNull();
-            this.email = null;
-          } else {
-            this.email = in.readString(this.email instanceof Utf8 ? (Utf8)this.email : null);
-          }
-          break;
-
-        default:
-          throw new java.io.IOException("Corrupt ResolvingDecoder.");
-        }
-      }
-    }
-  }
 }
 
 

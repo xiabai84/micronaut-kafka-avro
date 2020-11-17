@@ -1,0 +1,11 @@
+{
+     "type": "record",
+     "namespace": "micronaut.kafka.avro.model",
+     "name": "PartnerInfo",
+     "version": "1",
+     "fields": [
+       { "name": "partnerId", "type": "string", "doc": "Customer ID" },
+       { "name": "email", "type": "string", "doc": "contact email address" },
+       { "name": "telephone", "type": "string", "doc": "contact telephone number" }
+     ]
+}
