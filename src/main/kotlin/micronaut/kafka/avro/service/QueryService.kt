@@ -2,6 +2,8 @@ package micronaut.kafka.avro.service
 
 import io.micronaut.configuration.kafka.streams.InteractiveQueryService
 import micronaut.kafka.avro.config.StoreConfig
+import micronaut.kafka.avro.model.JuristicPerson
+import micronaut.kafka.avro.model.NaturalPerson
 import micronaut.kafka.avro.model.Partner
 import micronaut.kafka.avro.model.PartnerView
 import org.apache.kafka.streams.state.QueryableStoreTypes
@@ -17,13 +19,25 @@ class QueryService(
             .getQueryableStore(stores.partnerStore, QueryableStoreTypes.keyValueStore<String, Partner>())
             .map { v ->
                 val partner = v[id]
-                PartnerView(
-                        id = partner.id.toString(),
-                        vorname = partner.vorname.toString(),
-                        nachname = partner.nachname.toString(),
-                        age = partner.age,
-                        email = partner.email?.toString()
-                )
+
+                when(partner?.specInfo) {
+
+                    is NaturalPerson -> PartnerView(
+                            id = partner.partnerId.toString(),
+                            vorname = (partner.specInfo as NaturalPerson).firstName.toString(),
+                            nachname = (partner.specInfo as NaturalPerson).secondName.toString(),
+                            name = null
+                    )
+
+                    is JuristicPerson -> PartnerView(
+                            id = partner.partnerId.toString(),
+                            vorname = null,
+                            nachname = null,
+                            name = (partner.specInfo as NaturalPerson).secondName.toString()
+                    )
+
+                    else -> null
+                }
             }
             .orElse(null)
 

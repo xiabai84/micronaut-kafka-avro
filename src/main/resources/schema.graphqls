@@ -1,23 +1,25 @@
 input InputPartnerV1 {
-    id: ID!
-    vorname: String
-    nachname: String
+    partnerId: ID!
+    lastEventId: String
+    type: String
+    firstName: String
+    secondName: String
+    birthDay: String
+    name: String
+    telephone: String
     email: String
 }
 
 type Partner {
-    id: ID!
-    vorname: String
-    nachname: String
-    email: String
+    partnerId: ID!
+    lastEventId: String
 }
 
 type PartnerView {
     id: ID!
     vorname: String
     nachname: String
-    age: Int
-    email: String
+    name: String
 }
 
 type Mutation {

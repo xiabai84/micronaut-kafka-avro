@@ -1,28 +1,46 @@
 mutation{
   createPartnerV1(partnerV1: {
-    id:"1234",
-		vorname: "bai",
-    nachname: "xia",
-    email: "test@test.com"
-  }) {
-    id
-    vorname
-    nachname
-    email
+    {
+      partnerId: "123",
+      lastEventId: "test-event-id",
+      type: "NaturalPerson",
+      firstName: "bai",
+      secondName: "xia",
+      birthDay: "1984-04-11",
+      telephone: "7891234",
+      email: "test@test.com"
+    })
+  {
+    partnerId
+    lastEventId
   }
 }
 
 
 mutation {
-  createPartnerV2(partnerV2: {
-    id: "12345",
-    vorname: "zi",
-    nachname: "lin",
-    age: 30
-  }) {
-    id
-    vorname
-    nachname
-    age
+  createPartnerV2(partnerV2:
+    {
+      partnerId: "123",
+      lastEventId: "test-event-id",
+      type: "NaturalPerson",
+      firstName: "bai",
+      secondName: "xia",
+      birthDay: "1984-04-11",
+      telephone: "7891234",
+      email: "test@test.com",
+      age: 18
+    })
+  {
+    partnerId
+    lastEventId
+  }
+}
+
+query {
+	partnerV3(partnerId: "123") {
+        id
+        vorname
+        nachname
+        name
   }
 }
