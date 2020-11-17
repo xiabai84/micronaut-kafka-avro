@@ -2,7 +2,6 @@
      "type": "record",
      "namespace": "micronaut.kafka.avro.model",
      "name": "JuristicPerson",
-     "version": "1",
      "doc": "JuristicPerson is business customer such as company or organisation",
      "fields": [
        { "name": "type", "type": "string", "doc": "type of person i.e. NaturalPerson or JuristicPerson" },

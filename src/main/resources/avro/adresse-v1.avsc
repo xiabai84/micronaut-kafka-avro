@@ -2,7 +2,6 @@
      "type": "record",
      "namespace": "micronaut.kafka.avro.model",
      "name": "Adresse",
-     "version": "1",
      "doc": "",
      "fields": [
        { "name": "adresseId", "type": "string", "doc": "Adresse ID" },

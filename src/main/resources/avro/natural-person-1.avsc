@@ -2,7 +2,6 @@
      "type": "record",
      "namespace": "micronaut.kafka.avro.model",
      "name": "NaturalPerson",
-     "version": "1",
      "doc": "Natural person is always private customer",
      "fields": [
        { "name": "type", "type": "string", "doc": "type of person i.e. NaturalPerson or JuristicPerson" },
