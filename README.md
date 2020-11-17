@@ -5,6 +5,7 @@ Schema-Evolution by using Kafka, Micronaut and Avro serialization.
 * Creating auto generated SpecificRecord class using gradle-avro-plugin and Avro file
 * Producer can send Avro serialized data with different schema version
 * Consumer can use auto generated class consume all kinds of predefined schema without breaking
+* Evaluating polymorphism and inheritance with Avro 
 
 ## Technologies:
 * Kotlin 1.4.0
@@ -45,15 +46,19 @@ open graphiql interface in broswer http://localhsot:8080/graphiql and send recor
 ```
 mutation{
   createPartnerV1(partnerV1: {
-    id:"1234",
-		vorname: "bai",
-    nachname: "xia",
-    email: "test@test.com"
-  }) {
-    id
-    vorname
-    nachname
-    email
+    {
+      partnerId: "123",
+      lastEventId: "test-event-id",
+      type: "NaturalPerson",
+      firstName: "bai",
+      secondName: "xia",
+      birthDay: "1984-04-11",
+      telephone: "7891234",
+      email: "test@test.com"
+    })
+  {
+    partnerId
+    lastEventId
   }
 }
 ```
@@ -63,16 +68,21 @@ Check record in console output...
 After that checkout the other branch "v2/spec-record" and send some new record with schema version 2
 ```
 mutation {
-  createPartnerV2(partnerV2: {
-    id: "12345",
-    vorname: "bai",
-    nachname: "xia",
-    age: 18
-  }) {
-    id
-    vorname
-    nachname
-    age
+  createPartnerV2(partnerV2:
+    {
+      partnerId: "123",
+      lastEventId: "test-event-id",
+      type: "NaturalPerson",
+      firstName: "bai",
+      secondName: "xia",
+      birthDay: "1984-04-11",
+      telephone: "7891234",
+      email: "test@test.com",
+      age: 18
+    })
+  {
+    partnerId
+    lastEventId
   }
 }
 ```
