@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 339601152277755338L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PartnerInfo\",\"namespace\":\"micronaut.kafka.avro.model\",\"fields\":[{\"name\":\"partnerId\",\"type\":\"string\",\"doc\":\"Customer ID\"},{\"name\":\"email\",\"type\":\"string\",\"doc\":\"contact email address\"},{\"name\":\"telephone\",\"type\":\"string\",\"doc\":\"contact telephone number\"},{\"name\":\"address\",\"type\":\"string\",\"doc\":\"billing address\"}]}");
+  private static final long serialVersionUID = 7623241387400527961L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PartnerInfo\",\"namespace\":\"micronaut.kafka.avro.model\",\"fields\":[{\"name\":\"partnerId\",\"type\":\"string\",\"doc\":\"Customer ID\"},{\"name\":\"email\",\"type\":\"string\",\"doc\":\"contact email address\"},{\"name\":\"telephone\",\"type\":\"string\",\"doc\":\"contact telephone number\"},{\"name\":\"address\",\"type\":[\"null\",\"string\"],\"doc\":\"billing address\",\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -524,7 +524,13 @@ public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase imp
 
     out.writeString(this.telephone);
 
-    out.writeString(this.address);
+    if (this.address == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeString(this.address);
+    }
 
   }
 
@@ -539,7 +545,12 @@ public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase imp
 
       this.telephone = in.readString(this.telephone instanceof Utf8 ? (Utf8)this.telephone : null);
 
-      this.address = in.readString(this.address instanceof Utf8 ? (Utf8)this.address : null);
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.address = null;
+      } else {
+        this.address = in.readString(this.address instanceof Utf8 ? (Utf8)this.address : null);
+      }
 
     } else {
       for (int i = 0; i < 4; i++) {
@@ -557,7 +568,12 @@ public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase imp
           break;
 
         case 3:
-          this.address = in.readString(this.address instanceof Utf8 ? (Utf8)this.address : null);
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.address = null;
+          } else {
+            this.address = in.readString(this.address instanceof Utf8 ? (Utf8)this.address : null);
+          }
           break;
 
         default:
