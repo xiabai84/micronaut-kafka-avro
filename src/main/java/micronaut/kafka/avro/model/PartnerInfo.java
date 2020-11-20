@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 6317344446171557786L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PartnerInfo\",\"namespace\":\"micronaut.kafka.avro.model\",\"fields\":[{\"name\":\"partnerId\",\"type\":\"string\",\"doc\":\"Customer ID\"},{\"name\":\"email\",\"type\":\"string\",\"doc\":\"contact email address\"},{\"name\":\"telephone\",\"type\":\"string\",\"doc\":\"contact telephone number\"}]}");
+  private static final long serialVersionUID = 339601152277755338L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PartnerInfo\",\"namespace\":\"micronaut.kafka.avro.model\",\"fields\":[{\"name\":\"partnerId\",\"type\":\"string\",\"doc\":\"Customer ID\"},{\"name\":\"email\",\"type\":\"string\",\"doc\":\"contact email address\"},{\"name\":\"telephone\",\"type\":\"string\",\"doc\":\"contact telephone number\"},{\"name\":\"address\",\"type\":\"string\",\"doc\":\"billing address\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -77,6 +77,8 @@ public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase imp
    private java.lang.CharSequence email;
   /** contact telephone number */
    private java.lang.CharSequence telephone;
+  /** billing address */
+   private java.lang.CharSequence address;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -90,11 +92,13 @@ public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase imp
    * @param partnerId Customer ID
    * @param email contact email address
    * @param telephone contact telephone number
+   * @param address billing address
    */
-  public PartnerInfo(java.lang.CharSequence partnerId, java.lang.CharSequence email, java.lang.CharSequence telephone) {
+  public PartnerInfo(java.lang.CharSequence partnerId, java.lang.CharSequence email, java.lang.CharSequence telephone, java.lang.CharSequence address) {
     this.partnerId = partnerId;
     this.email = email;
     this.telephone = telephone;
+    this.address = address;
   }
 
   public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
@@ -105,6 +109,7 @@ public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase imp
     case 0: return partnerId;
     case 1: return email;
     case 2: return telephone;
+    case 3: return address;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -116,6 +121,7 @@ public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase imp
     case 0: partnerId = (java.lang.CharSequence)value$; break;
     case 1: email = (java.lang.CharSequence)value$; break;
     case 2: telephone = (java.lang.CharSequence)value$; break;
+    case 3: address = (java.lang.CharSequence)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -175,6 +181,24 @@ public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase imp
   }
 
   /**
+   * Gets the value of the 'address' field.
+   * @return billing address
+   */
+  public java.lang.CharSequence getAddress() {
+    return address;
+  }
+
+
+  /**
+   * Sets the value of the 'address' field.
+   * billing address
+   * @param value the value to set.
+   */
+  public void setAddress(java.lang.CharSequence value) {
+    this.address = value;
+  }
+
+  /**
    * Creates a new PartnerInfo RecordBuilder.
    * @return A new PartnerInfo RecordBuilder
    */
@@ -221,6 +245,8 @@ public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase imp
     private java.lang.CharSequence email;
     /** contact telephone number */
     private java.lang.CharSequence telephone;
+    /** billing address */
+    private java.lang.CharSequence address;
 
     /** Creates a new Builder */
     private Builder() {
@@ -245,6 +271,10 @@ public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase imp
         this.telephone = data().deepCopy(fields()[2].schema(), other.telephone);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
+      if (isValidValue(fields()[3], other.address)) {
+        this.address = data().deepCopy(fields()[3].schema(), other.address);
+        fieldSetFlags()[3] = other.fieldSetFlags()[3];
+      }
     }
 
     /**
@@ -264,6 +294,10 @@ public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase imp
       if (isValidValue(fields()[2], other.telephone)) {
         this.telephone = data().deepCopy(fields()[2].schema(), other.telephone);
         fieldSetFlags()[2] = true;
+      }
+      if (isValidValue(fields()[3], other.address)) {
+        this.address = data().deepCopy(fields()[3].schema(), other.address);
+        fieldSetFlags()[3] = true;
       }
     }
 
@@ -399,6 +433,50 @@ public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase imp
       return this;
     }
 
+    /**
+      * Gets the value of the 'address' field.
+      * billing address
+      * @return The value.
+      */
+    public java.lang.CharSequence getAddress() {
+      return address;
+    }
+
+
+    /**
+      * Sets the value of the 'address' field.
+      * billing address
+      * @param value The value of 'address'.
+      * @return This builder.
+      */
+    public micronaut.kafka.avro.model.PartnerInfo.Builder setAddress(java.lang.CharSequence value) {
+      validate(fields()[3], value);
+      this.address = value;
+      fieldSetFlags()[3] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'address' field has been set.
+      * billing address
+      * @return True if the 'address' field has been set, false otherwise.
+      */
+    public boolean hasAddress() {
+      return fieldSetFlags()[3];
+    }
+
+
+    /**
+      * Clears the value of the 'address' field.
+      * billing address
+      * @return This builder.
+      */
+    public micronaut.kafka.avro.model.PartnerInfo.Builder clearAddress() {
+      address = null;
+      fieldSetFlags()[3] = false;
+      return this;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public PartnerInfo build() {
@@ -407,6 +485,7 @@ public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase imp
         record.partnerId = fieldSetFlags()[0] ? this.partnerId : (java.lang.CharSequence) defaultValue(fields()[0]);
         record.email = fieldSetFlags()[1] ? this.email : (java.lang.CharSequence) defaultValue(fields()[1]);
         record.telephone = fieldSetFlags()[2] ? this.telephone : (java.lang.CharSequence) defaultValue(fields()[2]);
+        record.address = fieldSetFlags()[3] ? this.address : (java.lang.CharSequence) defaultValue(fields()[3]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -445,6 +524,8 @@ public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase imp
 
     out.writeString(this.telephone);
 
+    out.writeString(this.address);
+
   }
 
   @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
@@ -458,8 +539,10 @@ public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase imp
 
       this.telephone = in.readString(this.telephone instanceof Utf8 ? (Utf8)this.telephone : null);
 
+      this.address = in.readString(this.address instanceof Utf8 ? (Utf8)this.address : null);
+
     } else {
-      for (int i = 0; i < 3; i++) {
+      for (int i = 0; i < 4; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.partnerId = in.readString(this.partnerId instanceof Utf8 ? (Utf8)this.partnerId : null);
@@ -471,6 +554,10 @@ public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase imp
 
         case 2:
           this.telephone = in.readString(this.telephone instanceof Utf8 ? (Utf8)this.telephone : null);
+          break;
+
+        case 3:
+          this.address = in.readString(this.address instanceof Utf8 ? (Utf8)this.address : null);
           break;
 
         default:

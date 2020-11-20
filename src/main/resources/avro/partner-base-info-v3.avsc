@@ -5,6 +5,7 @@
      "fields": [
        { "name": "partnerId", "type": "string", "doc": "Customer ID" },
        { "name": "email", "type": "string", "doc": "contact email address" },
-       { "name": "telephone", "type": "string", "doc": "contact telephone number" }
+       { "name": "telephone", "type": "string", "doc": "contact telephone number" },
+       { "name": "address", "type": "string", "doc": "billing address" }
      ]
 }
