@@ -15,7 +15,7 @@ import org.apache.avro.message.SchemaStore;
 @org.apache.avro.specific.AvroGenerated
 public class PartnerInfo extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = 6317344446171557786L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PartnerInfo\",\"namespace\":\"micronaut.kafka.avro.model\",\"fields\":[{\"name\":\"partnerId\",\"type\":\"string\",\"doc\":\"Customer ID\"},{\"name\":\"email\",\"type\":\"string\",\"doc\":\"contact email address\"},{\"name\":\"telephone\",\"type\":\"string\",\"doc\":\"contact telephone number\"}],\"version\":\"1\"}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PartnerInfo\",\"namespace\":\"micronaut.kafka.avro.model\",\"fields\":[{\"name\":\"partnerId\",\"type\":\"string\",\"doc\":\"Customer ID\"},{\"name\":\"email\",\"type\":\"string\",\"doc\":\"contact email address\"},{\"name\":\"telephone\",\"type\":\"string\",\"doc\":\"contact telephone number\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();

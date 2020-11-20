@@ -12,11 +12,11 @@ import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
-/** Partner such as company or organisation */
+/** JuristicPerson is business customer such as company or organisation */
 @org.apache.avro.specific.AvroGenerated
 public class JuristicPerson extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = 1174856839723238860L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"JuristicPerson\",\"namespace\":\"micronaut.kafka.avro.model\",\"doc\":\"Partner such as company or organisation\",\"fields\":[{\"name\":\"type\",\"type\":\"string\",\"doc\":\"type of person i.e. NaturalPerson or JuristicPerson\"},{\"name\":\"name\",\"type\":\"string\"}],\"version\":\"1\"}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"JuristicPerson\",\"namespace\":\"micronaut.kafka.avro.model\",\"doc\":\"JuristicPerson is business customer such as company or organisation\",\"fields\":[{\"name\":\"type\",\"type\":\"string\",\"doc\":\"type of person i.e. NaturalPerson or JuristicPerson\"},{\"name\":\"name\",\"type\":\"string\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();

@@ -12,11 +12,11 @@ import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
-/** Partner is Kunden von VKB, kann sowohl juristische Person als auch natuerliche Person sein */
+/** Natural person is always private customer */
 @org.apache.avro.specific.AvroGenerated
 public class NaturalPerson extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = 7700242349873616072L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"NaturalPerson\",\"namespace\":\"micronaut.kafka.avro.model\",\"doc\":\"Partner is Kunden von VKB, kann sowohl juristische Person als auch natuerliche Person sein\",\"fields\":[{\"name\":\"type\",\"type\":\"string\",\"doc\":\"type of person i.e. NaturalPerson or JuristicPerson\"},{\"name\":\"firstName\",\"type\":\"string\"},{\"name\":\"secondName\",\"type\":\"string\"},{\"name\":\"birthday\",\"type\":\"string\"}],\"version\":\"1\"}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"NaturalPerson\",\"namespace\":\"micronaut.kafka.avro.model\",\"doc\":\"Natural person is always private customer\",\"fields\":[{\"name\":\"type\",\"type\":\"string\",\"doc\":\"type of person i.e. NaturalPerson or JuristicPerson\"},{\"name\":\"firstName\",\"type\":\"string\"},{\"name\":\"secondName\",\"type\":\"string\"},{\"name\":\"birthday\",\"type\":\"string\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
