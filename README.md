@@ -87,6 +87,7 @@ mutation {
 }
 ```
 
-You will see, that both consumer 1 and 2 can handle the data from partner-topic. 
+After that, switch to main branch. There is a stream-app, which uses the current schema to consume data from partner-topic.
 
-Validate schema version via Confluent Control Center...
+You will see, this stream deserializer can handle all schema versions. 
+
