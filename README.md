@@ -1,11 +1,11 @@
 # micronaut-kafka-avro
-Schema-Evolution by using Kafka, Micronaut and Avro serialization.
+A Demo application for Schema-Evolution by using Kafka, Micronaut and Avro serialization.
 
 ## Scope:
-* Creating auto generated SpecificRecord class using gradle-avro-plugin and Avro file
+* Creating auto generated SpecificRecord class using gradle-avro-plugin and Avro schema file
 * Producer can send Avro serialized data with different schema version
-* Consumer can use auto generated class consume all kinds of predefined schema without breaking
-* Evaluating polymorphism and inheritance with Avro 
+* Consumer can use auto generated class consume predefined schema version without breaking
+* Evaluating polymorphism and inheritance with Avro serialization
 
 ## Technologies:
 * Kotlin 1.4.0
@@ -16,33 +16,33 @@ Schema-Evolution by using Kafka, Micronaut and Avro serialization.
 
 ## Schema Evolution via Specific Record
 
-Step 1 start Confluent Platform:
+**Step 1** Start Confluent Platform:
 ```
 $ confluent start
 ```
 
-Step 2 prepare topics for kafka streams:
+**Step 2**  Prepare topics for kafka streams:
 ```
 $ ./createTopics topics.txt
 ```
 
-Step 3 use gradle-avro-plug to generate Java Pojo class, which is based on avro schema file:
+**Step 3**  Use gradle-avro-plug to generate Java Pojo class, which is based on avro schema file:
 ```
 # check out branch, which has schema version 1
 $ git checkout v1/spec-record  
 
 # compile java pojo class for producer
-$ gradle clean build   
+$ gradlew clean build   
 ```
 
-Step 4 start backend service
+**Step 4**  Start backend service
 ```
-$ gradle run
+$ gradlew run
 ```
 
-Step 5 send some record via GraphQl interface
+**Step 5**  Send some record via GraphiQL interface
 
-open graphiql interface in broswer http://localhsot:8080/graphiql and send record with graphql mutation
+open graphiql interface in broswer http://localhsot:8080/graphiql and send record with graphql mutation request
 ```
 mutation{
   createPartnerV1(partnerV1: {
@@ -65,7 +65,7 @@ mutation{
 
 Check record in console output...
 
-After that checkout the other branch "v2/spec-record" and send some new record with schema version 2
+After that checkout the other branch "v2/spec-record" and send some new record with schema version 2, repeat from Step 3
 ```
 mutation {
   createPartnerV2(partnerV2:
@@ -87,7 +87,7 @@ mutation {
 }
 ```
 
-After that, switch to main branch. There is a stream-app, which uses the current schema to consume data from partner-topic.
+At the end switch to main branch. There is a stream-app, which uses the current schema to consume data from partner-topic.
 
 You will see, this stream deserializer can handle all schema versions. 
 
