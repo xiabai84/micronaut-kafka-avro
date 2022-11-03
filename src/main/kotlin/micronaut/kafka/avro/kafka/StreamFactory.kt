@@ -1,6 +1,6 @@
 package micronaut.kafka.avro.kafka
 
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
+import io.confluent.kafka.serializers.json.KafkaJsonSchemaSerializer
 import io.micronaut.configuration.kafka.streams.ConfiguredStreamBuilder
 import io.micronaut.context.annotation.Factory
 import io.micronaut.context.annotation.Value
@@ -44,14 +44,14 @@ class StreamFactory(
 
         streamsConfig.apply {
             put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String()::class.java.canonicalName)
-            put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde::class.java.canonicalName)
+            put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, KafkaJsonSchemaSerializer::class.java.canonicalName)
             put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, env["BOOTSTRAP_SERVERS"] ?: bootstrapServers)
             put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest")
             put("schema.registry.url", registryUrl)
         }
 
         val serdeConfig = mapOf("schema.registry.url" to registryUrl)
-        val valueSerde = SpecificAvroSerde<Partner>()
+        val valueSerde = KafkaJsonSchemaSerializer<Partner>()
         valueSerde.configure(serdeConfig, false)
 
         val stream = builder.stream(

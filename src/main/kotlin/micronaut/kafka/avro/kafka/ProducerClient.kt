@@ -20,7 +20,7 @@ class ProducerClient(
     private val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
     @Singleton
-    fun sendToPartnerTopic(partner: Partner): Partner? {
+    fun sendToPartnerTopic(partner: Partner): Partner {
         val props = producerProperty.props
         val producer: Producer<CharSequence, Partner> = KafkaProducer(props)
 

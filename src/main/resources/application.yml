@@ -3,6 +3,10 @@ micronaut:
   application:
     name: micronaut-kafka-avro-v3
 
+jackson:
+  serializationInclusion: ALWAYS
+  time-zone: Europe/Berlin
+
 ---
 kafka:
   bootstrap:
