@@ -23,6 +23,7 @@ configurations {
 dependencies {
     implementation "javax.annotation:javax.annotation-api"
     implementation("io.confluent:kafka-json-serializer:$confluentVersion")
+    implementation("io.confluent:kafka-streams-json-schema-serde:$confluentVersion")
     implementation("io.confluent:kafka-json-schema-serializer:$confluentVersion")
     implementation("io.micronaut:micronaut-validation")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
